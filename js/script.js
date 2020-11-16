@@ -3,6 +3,7 @@
 /* global fetch */
 
 var usernameAvailable = false;
+stateList();
 
 function isFormValid()
 {
@@ -33,28 +34,40 @@ function isFormValid()
     return isValid;
 }
 
+async function stateList()
+{
+    let url = `https://cst336.herokuapp.com/projects/api/state_abbrAPI.php`;
+    let response = await fetch(url);
+    let data = await response.json();
+    data.forEach(function(i)
+    {
+        $("#state").append(`<option value="${i.usps}"> ${i.state} </option>`); 
+    });
+}
+
 $("#zip").on("change", async function()
 {
-    // alert($("#zip").val());
     let zipCode = $("#zip").val();
     let url = `https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip?zip=${zipCode}`;
     let response = await fetch(url);
     let data = await response.json();
     console.log(data);
+    if(data == false)
+    {
+        $("#zipError").html("Unrecognized zip code");
+        $("#zipError").css("color", "red");
+    }
     $("#city").html(data.city);
-    
     $("#latitude").html(data.latitude);
     $("#longitude").html(data.longitude);
 }); // zip
 
 $("#state").on("change", async function()
 {
-    // alert($("#state").val());
     let state = $("#state").val();
     let url = `https://itcdland.csumb.edu/~milara/ajax/countyList.php?state=${state}`;
     let response = await fetch(url);
     let data = await response.json();
-    // console.log(data);
     $("#county").html("<option> Select one </option>");
     data.forEach(function(i)
     {

@@ -20,7 +20,8 @@
             Gender:     <input type = "radio" name = "gender" value = "m"> Male
                         <input type = "radio" name = "gender" value = "f"> Female<br><br>
     
-            Zip Code    <input type = "text" id = "zip" name = "zip" class = "form-inline"><br>
+            Zip Code    <input type = "text" id = "zip" name = "zip" class = "form-inline">
+                        <span id = "zipError" class = "error"></span><br>
             City:       <span id = "city" class = "city"></span><br>
             Latitude:   <span id = "latitude" class = "latitude"></span><br>
             Longitude:  <span id = "longitude" class = "longitude"></span><br><br>
