@@ -1,0 +1,11 @@
+.city, .longitude, .latitude
+{
+    color: blue;
+    font-weight: bold;
+}
+
+.error
+{
+    font-size: small;
+    font-style: italic;
+}
